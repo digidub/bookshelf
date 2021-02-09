@@ -10,7 +10,7 @@ function Book(title, author, pages, read) {
     this.read = read
 };
 
-Book.prototype.info = function() {
+Book.prototype.info = function () {
     return this.title;
 };
 
@@ -21,8 +21,44 @@ function addBookToLibrary(title, author, pages, read) {
     return;
 }
 
-addBookToLibrary("book1", "author1", 101, 0);
-addBookToLibrary("book2", "author2", 102, 1);
-addBookToLibrary("book3", "author3", 103, 0);
 
+//populate object array
+addBookToLibrary("book1", "author1", 101, "read");
+addBookToLibrary("book2", "author2", 102, "unread");
+addBookToLibrary("book3", "author3", 103, "read");
+
+
+//DOM identifier
+const bookshelf = document.querySelector(".bookshelf");
+
+//delete book row div
+function delDiv(bookName) {
+    let delDiv = document.createElement("div"); //create 'delete div' and store it
+    delDiv.setAttribute('class', 'delete-div'); //style div with generic class for css
+    delDiv.setAttribute(`data-delete`, `${bookName}`); //set data attribute for access functionality
+    const delText = document.createTextNode("X"); //create text placeholder to act as delete key
+    delDiv.appendChild(delText); //insert text placeholder into new div
+    return delDiv; //return the 'delete div' for use out of the function
+}
+
+//function to create book DIV and style it
+function bookDiv(bookName) {
+    let div = document.createElement("div"); //create div and store it 
+    div.setAttribute('class', 'book'); //style div with generic class for css
+    div.setAttribute(`data-index`, `${bookName}`); //set data attribute for access functionality
+    return div; //return the div for use outside of the function
+}
+
+//loop through array and display each book on the page
+function displayLibrary() {
+    for (let i = 0; i < library.length; i++) { //cycle through object array length
+        let bookTitle = library[i][0] //store Object's booktitle
+        let div = bookDiv(bookTitle); //run bookDiv function and store its output
+        let del = delDiv(bookTitle); //run delDiv function and store its output
+        div.innerHTML = library[i].title + " " + library[i].author + " " + library[i].pages + " " + library[i].read; //output object values into HTML of the div
+        div.appendChild(del); //add the delete div as a child of the Book's detail's div.
+        bookshelf.appendChild(div); //add the Book's Detail's div to the bookshelf div.
+    };
+    return;
+}
 
