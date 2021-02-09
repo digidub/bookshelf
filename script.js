@@ -8,11 +8,12 @@ const library = [
 ];
 
 //object constructor for the book object
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, comments) {
     this.title = title
     this.author = author
     this.pages = pages
     this.read = read
+    this.comments = comments
 };
 //prototype info fetching function
 Book.prototype.info = function () {
@@ -20,16 +21,16 @@ Book.prototype.info = function () {
 };
 
 //function to add book to library
-function addBookToLibrary(title, author, pages, read) {
-    let newBook = new Book(title, author, pages, read);
+function addBookToLibrary(title, author, pages, read, comments) {
+    let newBook = new Book(title, author, pages, read, comments);
     library.push(newBook);
     return;
 }
 
 
 //populate object array
-addBookToLibrary("book1", "author1", 101, "read");
-addBookToLibrary("book2", "author2", 102, "unread");
+addBookToLibrary("book1", "author1", 101, "read", "great book");
+addBookToLibrary("book2", "author2", 102, "unread", "recommended by Judy");
 addBookToLibrary("book3", "author3", 103, "read");
 
 
@@ -73,6 +74,16 @@ function getInput() {
     let pagesInput = document.querySelector(`[name="pages"]`).value;
     let commentsInput = document.querySelector(`[name="comments"]`).value;
     let readInput = document.querySelector('input[name="read"]:checked').value;
-    addBookToLibrary(titleInput, authorInput, pagesInput, commentsInput, readInput)   ; 
+
+    if ((titleInput == "") || (authorInput == "")) {
+        return;
+    }    
+    addBookToLibrary(titleInput, authorInput, pagesInput, readInput, commentsInput);
+    console.log(library); 
     return;
-}  
+}
+
+//event listener for the submit button
+submit.addEventListener('click', () => {
+    getInput();
+});
