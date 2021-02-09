@@ -72,5 +72,7 @@ function getInput() {
     let authorInput = document.querySelector(`[name="author"]`).value;
     let pagesInput = document.querySelector(`[name="pages"]`).value;
     let commentsInput = document.querySelector(`[name="comments"]`).value;
-    return titleInput;
+    let readInput = document.querySelector('input[name="read"]:checked').value;
+    addBookToLibrary(titleInput, authorInput, pagesInput, commentsInput, readInput)   ; 
+    return;
 }  
