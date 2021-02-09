@@ -1,4 +1,4 @@
-//array for library objects
+//array for book objects
 const library = [
     {
         "title": "book1",
@@ -19,4 +19,15 @@ const library = [
         "read": 1,
     },
 ];
+
+//object constructor for the book object
+function Book(title, author, pages, read) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
+    this.info = function () {
+        return (`${title} by ${author}, ${pages}, ${read}`);
+    }
+}
 
