@@ -17,7 +17,7 @@ function Book(title, author, pages, read, comments, id) {
 	this.id = id
 };
 
-//prototype info fetching function
+//prototype info-fetching function
 Book.prototype.info = function () {
 	return this.title + " by " + this.author + ", " + this.pages + " pages long - " + this.read;
 };
@@ -39,14 +39,6 @@ function addBookToLibrary(title, author, pages, read, comments) {
 	}
 	return;
 }
-
-
-//populate object array
-addBookToLibrary("book1", "author1", 101, "read", "great book");
-addBookToLibrary("book2", "author2", 102, "unread", "recommended by Judy");
-addBookToLibrary("book3", "author3", 103, "read");
-
-displayLibrary();
 
 //delete book row div
 function delDiv(bookID) {
@@ -87,13 +79,14 @@ function updateLibrary(i) {
 
 //function to parse form input fields into object constructor
 function getInput() {
-	//obtain form input values and assign them to variables
+	//obtain form input values and assign them to variables:
 	let titleInput = document.querySelector(`[name="title"]`).value;
 	let authorInput = document.querySelector(`[name="author"]`).value;
-	//validate author/title input and prevent function running if either are empty
+	//validate author/title input and prevent function running if either are empty:
 	if ((titleInput == "") || (authorInput == "")) {
 		return;
 	}
+	//back to obtaining the remaining form input values
 	let pagesInput = document.querySelector(`[name="pages"]`).value;
 	let commentsInput = document.querySelector(`[name="comments"]`).value;
 	let readInput = document.querySelector('input[name="read"]:checked').value;
@@ -115,16 +108,24 @@ submit.addEventListener('click', (e) => {
 //DOM identifier for delte divs
 let deleteButton = document.querySelectorAll(".delete-div");
 
-//event listener for delete DIV
-for (let i = 0; i < deleteButton.length; i++) {
-	deleteButton[i].addEventListener('click', (e) => deleteBook(e.target.attributes[1].value)
-	);
+//listen to the X button on any books in the bookshelf and remove them from the html
+bookshelf.onclick = function(e) {
+	if (e.target.className != "delete-div") return; //make sure that only X is being pressed
+	let removeBook = e.target.closest('.book'); //assign the closest book div
+	removeBook.remove(); //then remove it
+	deleteBook(e.target.attributes[1].value); //run function to delete object from array
 };
 
-//function to delete array index based on delete button pushed
+//function to delete object from array
 function deleteBook(e) {
-	let toDelete = library.findIndex( ({ id }) => id == e); //finds the index of the id clicked on
+	let toDelete = library.findIndex(({ id }) => id == e); //finds the index of the id clicked on
 	library.splice(toDelete, 1); //delete the object at the found index
-	let divToDel = document.querySelector(`[data-index="${e}"]`) //finds the parent div in the HTML
-    bookshelf.removeChild(divToDel); //deletes from the HTML
+	let divToDel = document.querySelector(`[data-index="${e}"]`) //finds the parent div in the HTML	
 }
+
+//populate object array
+addBookToLibrary("book1", "author1", 101, "read", "great book");
+addBookToLibrary("book2", "author2", 102, "unread", "recommended by Judy");
+addBookToLibrary("book3", "author3", 103, "read");
+
+displayLibrary();
