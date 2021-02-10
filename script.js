@@ -2,7 +2,7 @@
 const bookshelf = document.querySelector(".bookshelf"); //identifies main "bookshelf" div
 const form = document.querySelector(`form`) //identifies form
 const submit = document.querySelector(`[type="submit"]`); //identifies submit button
-
+const deleteButton = document.querySelectorAll(".delete-div");
 
 
 //empty array for book objects
@@ -35,9 +35,6 @@ addBookToLibrary("book1", "author1", 101, "read", "great book");
 addBookToLibrary("book2", "author2", 102, "unread", "recommended by Judy");
 addBookToLibrary("book3", "author3", 103, "read");
 
-
-
-
 //delete book row div
 function delDiv(bookName) {
     let delDiv = document.createElement("div"); //create 'delete div' and store it
@@ -67,12 +64,12 @@ function displayLibrary() {
 //update library display
 function updateLibrary(i) {
     let bookTitle = library[i].title //store Object's booktitle
-        let div = bookDiv(bookTitle); //run bookDiv function and store its output
-        let del = delDiv(bookTitle); //run delDiv function and store its output
-        div.innerHTML = library[i].info()  //title + " " + library[i].author + " " + library[i].pages + " " + library[i].read; //output object values into HTML of the div
-        div.appendChild(del); //add the delete div as a child of the Book's detail's div.
-        bookshelf.appendChild(div); //add the Book's Detail's div to the bookshelf div.
-        return;
+    let div = bookDiv(bookTitle); //run bookDiv function and store its output
+    let del = delDiv(bookTitle); //run delDiv function and store its output
+    div.innerHTML = library[i].info()  //title + " " + library[i].author + " " + library[i].pages + " " + library[i].read; //output object values into HTML of the div
+    div.appendChild(del); //add the delete div as a child of the Book's detail's div.
+    bookshelf.appendChild(div); //add the Book's Detail's div to the bookshelf div.
+    return;
 }
 
 //function to parse form input fields into object constructor
@@ -89,7 +86,7 @@ function getInput() {
     let readInput = document.querySelector('input[name="read"]:checked').value;
     //parse variables to add function:    
     addBookToLibrary(titleInput, authorInput, pagesInput, readInput, commentsInput);
-    let i = (library.length-1)//set i to the index value of the latest library object
+    let i = (library.length - 1)//set i to the index value of the latest library object
     updateLibrary(i); //run library update using i
     return;
 }
@@ -97,6 +94,7 @@ function getInput() {
 //event listener for the submit button
 submit.addEventListener('click', (e) => {
     e.preventDefault();
-    getInput();    
+    getInput();
     //form.reset();
 });
+
