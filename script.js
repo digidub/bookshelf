@@ -1,6 +1,8 @@
 //DOM identifiers
 const bookshelf = document.querySelector(".bookshelf"); //identifies main "bookshelf" div
+const form = document.querySelector(`form`) //identifies form
 const submit = document.querySelector(`[type="submit"]`); //identifies submit button
+
 
 
 //empty array for book objects
@@ -69,16 +71,17 @@ function displayLibrary() {
 
 //function to parse form input fields into object constructor
 function getInput() {
-    //
+    //obtain form input values and assign them to variables
     let titleInput = document.querySelector(`[name="title"]`).value;
     let authorInput = document.querySelector(`[name="author"]`).value;
+    //validate author/title input and prevent function running if either are empty
+    if ((titleInput == "") || (authorInput == "")) {
+        return;
+    }
     let pagesInput = document.querySelector(`[name="pages"]`).value;
     let commentsInput = document.querySelector(`[name="comments"]`).value;
     let readInput = document.querySelector('input[name="read"]:checked').value;
-
-    if ((titleInput == "") || (authorInput == "")) {
-        return;
-    }    
+    //parse variables to add function    
     addBookToLibrary(titleInput, authorInput, pagesInput, readInput, commentsInput);
     return;
 }
@@ -87,4 +90,5 @@ function getInput() {
 submit.addEventListener('click', (e) => {
     getInput();
     e.preventDefault();
+    form.reset();
 });
