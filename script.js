@@ -67,8 +67,9 @@ function displayLibrary() {
     return;
 }
 
-//function to parse user input to object constructor
+//function to parse form input fields into object constructor
 function getInput() {
+    //
     let titleInput = document.querySelector(`[name="title"]`).value;
     let authorInput = document.querySelector(`[name="author"]`).value;
     let pagesInput = document.querySelector(`[name="pages"]`).value;
@@ -79,11 +80,11 @@ function getInput() {
         return;
     }    
     addBookToLibrary(titleInput, authorInput, pagesInput, readInput, commentsInput);
-    console.log(library); 
     return;
 }
 
 //event listener for the submit button
-submit.addEventListener('click', () => {
+submit.addEventListener('click', (e) => {
     getInput();
+    e.preventDefault();
 });
