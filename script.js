@@ -56,17 +56,23 @@ function bookDiv(bookName) {
     return div; //return the div for use outside of the function
 }
 
-//loop through array and display each book on the page
+//loop through library object and runs the update library function
 function displayLibrary() {
     for (let i = 0; i < library.length; i++) { //cycle through object array length
-        let bookTitle = library[i][0] //store Object's booktitle
+        updateLibrary(i); //run the update library function for each instance of i
+    };
+    return;
+}
+
+//update library display
+function updateLibrary(i) {
+    let bookTitle = library[i].title //store Object's booktitle
         let div = bookDiv(bookTitle); //run bookDiv function and store its output
         let del = delDiv(bookTitle); //run delDiv function and store its output
         div.innerHTML = library[i].info()  //title + " " + library[i].author + " " + library[i].pages + " " + library[i].read; //output object values into HTML of the div
         div.appendChild(del); //add the delete div as a child of the Book's detail's div.
         bookshelf.appendChild(div); //add the Book's Detail's div to the bookshelf div.
-    };
-    return;
+        return;
 }
 
 //function to parse form input fields into object constructor
@@ -81,14 +87,16 @@ function getInput() {
     let pagesInput = document.querySelector(`[name="pages"]`).value;
     let commentsInput = document.querySelector(`[name="comments"]`).value;
     let readInput = document.querySelector('input[name="read"]:checked').value;
-    //parse variables to add function    
+    //parse variables to add function:    
     addBookToLibrary(titleInput, authorInput, pagesInput, readInput, commentsInput);
+    let i = (library.length-1)//set i to the index value of the latest library object
+    updateLibrary(i); //run library update using i
     return;
 }
 
 //event listener for the submit button
 submit.addEventListener('click', (e) => {
-    getInput();
     e.preventDefault();
-    form.reset();
+    getInput();    
+    //form.reset();
 });
