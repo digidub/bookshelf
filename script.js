@@ -10,22 +10,34 @@ const library = [
 ];
 
 //object constructor for the book object
-function Book(title, author, pages, read, comments) {
+function Book(title, author, pages, read, comments, id) {
     this.title = title
     this.author = author
     this.pages = pages
     this.read = read
     this.comments = comments
+    this.id = id
 };
 //prototype info fetching function
 Book.prototype.info = function () {
     return this.title + " by " + this.author + ", " + this.pages + " pages long - " + this.read;
 };
 
-//function to add book to library
+//function to add book to library based on user inputs
 function addBookToLibrary(title, author, pages, read, comments) {
-    let newBook = new Book(title, author, pages, read, comments);
-    library.push(newBook);
+    if (library.length < 1) { //check to see whether library object array is empty
+        let id = 1; //if so, set the object's ID to 1
+        let newBook = new Book(title, author, pages, read, comments, id); /*store the new book
+        constructor in a variable*/
+        library.push(newBook); //add the library object to the end of the library array
+    }
+    else {
+        /*if the library array is not empty, find the highest value ID and add 1 to it 
+        to set the id for the newly added object*/
+        let id = (Math.max.apply(Math, library.map(highest => {return highest.id})) + 1);
+        let newBook = new Book(title, author, pages, read, comments, id); //store the book const
+        library.push(newBook); //add the library object to the end of the library array
+    }    
     return;
 }
 
