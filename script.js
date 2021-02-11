@@ -139,7 +139,7 @@ bookshelf.onclick = function (e) {
 	else return; //otherwise do nothing
 };
 
-
+//change status of read
 function changeRead(e) {
 	let toChangeRead = library.findIndex(({ id }) => id == e) //finds the index of the id clicked on
 	if (library[toChangeRead].read == "read") { //if the book object is read
@@ -163,3 +163,4 @@ addBookToLibrary("book2", "author2", 102, "unread", "recommended by Judy");
 addBookToLibrary("book3", "author3", 103, "read");
 
 displayLibrary();
+
