@@ -66,13 +66,31 @@ function displayLibrary() {
 	return;
 }
 
+//function to create read tick box, initiatied by the updateLibrary function
+function tickRead(read) {
+	let tickDiv = document.createElement("div"); //create 'tick div' and store it
+	tickDiv.setAttribute('class', 'read-div'); //set class for styling
+	if (read == "read") { //validate whether object is read or not
+		tickDiv.innerHTML = `<input type="checkbox" name="read" checked>
+	<label for="read">read?</label>`;//set HTML appropriately
+	}
+	else { //otherwise if book is unread
+		tickDiv.innerHTML = `<input type="checkbox" name="read">
+	<label for="read">read?</label>`; //set HTML appropriately
+	}
+	return tickDiv; //return tickDiv to updateLibrary function
+}
+
 //update library display
 function updateLibrary(i) {
 	let bookID = library[i].id //store Object's booktitle
 	let div = bookDiv(bookID); //run bookDiv function and store its output
 	let del = delDiv(bookID); //run delDiv function and store its output
 	div.innerHTML = library[i].info()  //title + " " + library[i].author + " " + library[i].pages + " " + library[i].read; //output object values into HTML of the div
+	let read = library[i].read;
+	let tickDiv = tickRead(read);
 	div.appendChild(del); //add the delete div as a child of the Book's detail's div.
+	div.appendChild(tickDiv);
 	bookshelf.appendChild(div); //add the Book's Detail's div to the bookshelf div.
 	return;
 }
@@ -109,7 +127,7 @@ submit.addEventListener('click', (e) => {
 let deleteButton = document.querySelectorAll(".delete-div");
 
 //listen to the X button on any books in the bookshelf and remove them from the html
-bookshelf.onclick = function(e) {
+bookshelf.onclick = function (e) {
 	if (e.target.className != "delete-div") return; //make sure that only X is being pressed
 	let removeBook = e.target.closest('.book'); //assign the closest book div
 	removeBook.remove(); //then remove it
