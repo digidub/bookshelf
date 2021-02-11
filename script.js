@@ -58,6 +58,21 @@ function bookDiv(bookID) {
 	return div; //return the div for use outside of the function
 }
 
+//function to create read tick box, initiatied by the updateLibrary function
+function tickRead(read, bookID) {
+	let tickDiv = document.createElement("div"); //create 'tick div' and store it
+	tickDiv.setAttribute('class', 'read-div'); //set class for styling
+	if (read == "read") { //validate whether object is read or not
+		tickDiv.innerHTML = `<input type="checkbox" data-read="${bookID}" class="read" name="read" checked>
+	<label for="read">read?</label>`;//set HTML appropriately
+	}
+	else { //otherwise if book is unread
+		tickDiv.innerHTML = `<input type="checkbox" data-read="${bookID}" class="read" name="read">
+	<label for="read">read?</label>`; //set HTML appropriately
+	}
+	return tickDiv; //return tickDiv to updateLibrary function
+}
+
 //loop through library object and runs the update library function
 function displayLibrary() {
 	for (let i = 0; i < library.length; i++) { //cycle through object array length
@@ -66,29 +81,14 @@ function displayLibrary() {
 	return;
 }
 
-//function to create read tick box, initiatied by the updateLibrary function
-function tickRead(read) {
-	let tickDiv = document.createElement("div"); //create 'tick div' and store it
-	tickDiv.setAttribute('class', 'read-div'); //set class for styling
-	if (read == "read") { //validate whether object is read or not
-		tickDiv.innerHTML = `<input type="checkbox" name="read" checked>
-	<label for="read">read?</label>`;//set HTML appropriately
-	}
-	else { //otherwise if book is unread
-		tickDiv.innerHTML = `<input type="checkbox" name="read">
-	<label for="read">read?</label>`; //set HTML appropriately
-	}
-	return tickDiv; //return tickDiv to updateLibrary function
-}
-
 //update library display
 function updateLibrary(i) {
 	let bookID = library[i].id //store Object's booktitle
 	let div = bookDiv(bookID); //run bookDiv function and store its output
 	let del = delDiv(bookID); //run delDiv function and store its output
 	div.innerHTML = library[i].info()  //title + " " + library[i].author + " " + library[i].pages + " " + library[i].read; //output object values into HTML of the div
-	let read = library[i].read;
-	let tickDiv = tickRead(read);
+	let read = library[i].read; //store the value of whether the book is read or not
+	let tickDiv = tickRead(read, bookID); //run the tickbox creation function using the read variable
 	div.appendChild(del); //add the delete div as a child of the Book's detail's div.
 	div.appendChild(tickDiv);
 	bookshelf.appendChild(div); //add the Book's Detail's div to the bookshelf div.
@@ -128,11 +128,27 @@ let deleteButton = document.querySelectorAll(".delete-div");
 
 //listen to the X button on any books in the bookshelf and remove them from the html
 bookshelf.onclick = function (e) {
-	if (e.target.className != "delete-div") return; //make sure that only X is being pressed
-	let removeBook = e.target.closest('.book'); //assign the closest book div
-	removeBook.remove(); //then remove it
-	deleteBook(e.target.attributes[1].value); //run function to delete object from array
+	if (e.target.className != "delete-div") return; //make sure that only "X" is being pressed
+	let removeBook = e.target.closest('.book'); //find and assign the parent book DIV it belongs to
+	removeBook.remove(); //then remove it from the DOM
+	deleteBook(e.target.attributes[1].value); //take the ID value from the X div and parse it to the delete book from array function
 };
+
+//listen to the checkbox button on any books in the bookshelf and change read status
+bookshelf.onclick = function (e) {
+	if (e.target.className != "read") return; //make sure that only checkbox is being pressed
+	changeRead(e.target.attributes[1].value); //take the ID value from the tickbox and parse it to the change read status function
+};
+
+function changeRead(e) {
+	let toChangeRead = library.findIndex(({ id }) => id == e) //finds the index of the id clicked on
+	if (library[toChangeRead].read == "read") { //if the book object is read
+		library[toChangeRead].read = "unread" //change it to unread
+	}
+	else if (library[toChangeRead].read == "unread") { //if the book object is unread
+		library[toChangeRead].read = "read" //change it to read
+	}
+}
 
 //function to delete object from array
 function deleteBook(e) {
