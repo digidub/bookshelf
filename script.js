@@ -160,9 +160,6 @@ function deleteBook(e) {
 	let divToDel = document.querySelector(`[data-index="${e}"]`) //finds the parent div in the HTML	
 }
 
-displayLibrary();
-storageCheck();
-
 function storageCheck() {
 	if (!localStorage.getItem('library')) { //if local storage does not exist
 		populateStorage(); //save initial storage
@@ -175,10 +172,10 @@ function storageCheck() {
 //save to storage 
 function populateStorage() {
 	localStorage.setItem('library', JSON.stringify(library));
-//	if (!localStorage.getItem('library')) {
-//		console.log("hmmm")
-//	}
-//	else console.log("success");
+	//	if (!localStorage.getItem('library')) {
+	//		console.log("hmmm")
+	//	}
+	//	else console.log("success");
 	return;
 }
 
@@ -190,3 +187,6 @@ function retrieveStorage() {
 		addBookToLibrary(bookObj[i].title, bookObj[i].author, bookObj[i].pages, bookObj[i].read, bookObj[i].comments)
 	}
 }
+
+displayLibrary();
+storageCheck();
