@@ -112,6 +112,7 @@ function getInput() {
 	addBookToLibrary(titleInput, authorInput, pagesInput, readInput, commentsInput);
 	let i = (library.length - 1)//set i to the index value of the latest library object
 	updateLibrary(i); //run library update using i
+	populateStorage();
 	return;
 }
 
@@ -130,11 +131,13 @@ let deleteButton = document.querySelectorAll(".delete-div");
 bookshelf.onclick = function (e) {
 	if (e.target.className == "read") { //check to see if read has been pressed
 		changeRead(e.target.attributes[1].value); //take the ID value from the tickbox and parse it to the change read status function
+		populateStorage();
 	}
 	else if (e.target.className == "delete-div") { //check to see if "X" is being pressed
 		let removeBook = e.target.closest('.book'); //find and assign the parent book DIV it belongs to
 		removeBook.remove(); //then remove it from the DOM
 		deleteBook(e.target.attributes[1].value); //take the ID value from the X div and parse it to the delete book from array function
+		populateStorage();
 	}
 	else return; //otherwise do nothing
 };
@@ -157,10 +160,33 @@ function deleteBook(e) {
 	let divToDel = document.querySelector(`[data-index="${e}"]`) //finds the parent div in the HTML	
 }
 
-//populate object array
-addBookToLibrary("book1", "author1", 101, "read", "great book");
-addBookToLibrary("book2", "author2", 102, "unread", "recommended by Judy");
-addBookToLibrary("book3", "author3", 103, "read");
-
 displayLibrary();
+storageCheck();
 
+function storageCheck() {
+	if (!localStorage.getItem('library')) { //if local storage does not exist
+		populateStorage(); //save initial storage
+	} else { //otherwise...
+		retrieveStorage();
+		displayLibrary();
+	}
+}
+
+//save to storage 
+function populateStorage() {
+	localStorage.setItem('library', JSON.stringify(library));
+//	if (!localStorage.getItem('library')) {
+//		console.log("hmmm")
+//	}
+//	else console.log("success");
+	return;
+}
+
+//retreive from local storage
+function retrieveStorage() {
+	let retrievedStorage = localStorage.getItem('library'); //parse stored JSON to variable
+	let bookObj = JSON.parse(retrievedStorage)
+	for (let i = 0; i < bookObj.length; i++) {
+		addBookToLibrary(bookObj[i].title, bookObj[i].author, bookObj[i].pages, bookObj[i].read, bookObj[i].comments)
+	}
+}
