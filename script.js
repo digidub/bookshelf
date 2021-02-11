@@ -126,19 +126,19 @@ submit.addEventListener('click', (e) => {
 //DOM identifier for delte divs
 let deleteButton = document.querySelectorAll(".delete-div");
 
-//listen to the X button on any books in the bookshelf and remove them from the html
+//event listeners for X and changeRead functions
 bookshelf.onclick = function (e) {
-	if (e.target.className != "delete-div") return; //make sure that only "X" is being pressed
-	let removeBook = e.target.closest('.book'); //find and assign the parent book DIV it belongs to
-	removeBook.remove(); //then remove it from the DOM
-	deleteBook(e.target.attributes[1].value); //take the ID value from the X div and parse it to the delete book from array function
+	if (e.target.className == "read") { //check to see if read has been pressed
+		changeRead(e.target.attributes[1].value); //take the ID value from the tickbox and parse it to the change read status function
+	}
+	else if (e.target.className == "delete-div") { //check to see if "X" is being pressed
+		let removeBook = e.target.closest('.book'); //find and assign the parent book DIV it belongs to
+		removeBook.remove(); //then remove it from the DOM
+		deleteBook(e.target.attributes[1].value); //take the ID value from the X div and parse it to the delete book from array function
+	}
+	else return; //otherwise do nothing
 };
 
-//listen to the checkbox button on any books in the bookshelf and change read status
-bookshelf.onclick = function (e) {
-	if (e.target.className != "read") return; //make sure that only checkbox is being pressed
-	changeRead(e.target.attributes[1].value); //take the ID value from the tickbox and parse it to the change read status function
-};
 
 function changeRead(e) {
 	let toChangeRead = library.findIndex(({ id }) => id == e) //finds the index of the id clicked on
