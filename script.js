@@ -188,5 +188,4 @@ function retrieveStorage() {
 	}
 }
 
-//displayLibrary();
 storageCheck();
