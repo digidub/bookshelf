@@ -11,28 +11,58 @@
     font-family: chevin;
 }
 */
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption');
+
+:root {
+    font-family: 'PT Sans Caption';
+}
 
 .wrapper {
-    margin: 0 auto;
-    max-width: 700px;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
   }
 
-.book {
+.book {    
     background-color: rgb(211, 211, 211);
     padding: 14px;
     border-radius: 15px;
     margin: 5px;
     display: grid;
-    grid-template-columns: 89% 10% 1%;
+    grid-template-columns: 84% 15% 1%;
     width: 600px;
 }
 
-.controls {
-    background-color: rgb(211, 211, 211);
+.controls {    
+    /*background-color: rgb(211, 211, 211);*/
     padding: 14px;
     border-radius: 15px;
     margin: 5px;
     display: grid;
-    grid-template-columns: 89% 10% 1%;
-    width: 600px;
+    max-width: 800px;
 }
+
+.add-form {
+    display: none;    
+}
+
+form {
+    display: flex;
+    grid-template-columns: 18% 18% 10% 20% 20% 9%;
+
+}
+
+.pages {
+    max-width: 60px;
+  }
+
+input[name="title"], input[name="author"], input[name="comments"],  {
+    margin: 20px;
+}
+
+input[name="pages"] {
+    max-width: 60px;
+  }
+
