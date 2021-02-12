@@ -1,12 +1,38 @@
-.book {
+/*.book {
     background-color: rgb(211, 211, 211);
-    width: 500px;
-    padding: 10px;
+    width: 600px;
+    padding: 14px;
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
     flex-direction: row;
+    justify-content: space-between;
     border-radius: 15px;
     margin: 5px;
     font-family: chevin;
 }
+*/
 
+.wrapper {
+    margin: 0 auto;
+    max-width: 700px;   
+  }
+
+.book {
+    background-color: rgb(211, 211, 211);
+    padding: 14px;
+    border-radius: 15px;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 89% 10% 1%;
+    width: 600px;
+}
+
+.controls {
+    background-color: rgb(211, 211, 211);
+    padding: 14px;
+    border-radius: 15px;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 89% 10% 1%;
+    width: 600px;
+}

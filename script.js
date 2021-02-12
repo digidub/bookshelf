@@ -86,7 +86,7 @@ function updateLibrary(i) {
 	let bookID = library[i].id //store Object's booktitle
 	let div = bookDiv(bookID); //run bookDiv function and store its output
 	let del = delDiv(bookID); //run delDiv function and store its output
-	div.innerHTML = library[i].info()  //title + " " + library[i].author + " " + library[i].pages + " " + library[i].read; //output object values into HTML of the div
+	div.innerHTML = `<div>${library[i].info()}</div>`  //title + " " + library[i].author + " " + library[i].pages + " " + library[i].read; //output object values into HTML of the div
 	let read = library[i].read; //store the value of whether the book is read or not
 	let tickDiv = tickRead(read, bookID); //run the tickbox creation function using the read variable
 	div.appendChild(tickDiv); //add the tick read div as a child of the Book's detail's div
