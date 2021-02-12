@@ -1,32 +1,33 @@
-/*.book {
-    background-color: rgb(211, 211, 211);
-    width: 600px;
-    padding: 14px;
-    display: flex;
-    align-items: flex-end;
-    flex-direction: row;
-    justify-content: space-between;
-    border-radius: 15px;
-    margin: 5px;
-    font-family: chevin;
-}
-*/
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption');
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 :root {
     font-family: 'PT Sans Caption';
+    
+}
+
+body {
+    background-color: #EEEEEE;
+    height: auto;
+    margin: 10px;
 }
 
 .wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
+    justify-content: flex-start;
     align-items: center;
-  }
+    background-color: white;
+    height: 95vh;
+    box-shadow: 5px 5px 50px 1px #e0e0e0;
+}
 
 .book {    
-    background-color: rgb(211, 211, 211);
+    border-color: #0079D2;
+    background-color: #EDF7FF;
+    color: #3a3a3a;
+    border-style: solid;
+    border-width: 1px;
     padding: 14px;
     border-radius: 15px;
     margin: 5px;
@@ -36,12 +37,11 @@
 }
 
 .controls {    
-    /*background-color: rgb(211, 211, 211);*/
-    padding: 14px;
-    border-radius: 15px;
-    margin: 5px;
-    display: grid;
-    max-width: 800px;
+    background-color: #EEEEEE;
+    padding: 14px;    
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .add-form {
@@ -49,20 +49,21 @@
 }
 
 form {
+    font-family: 'Roboto';
     display: flex;
-    grid-template-columns: 18% 18% 10% 20% 20% 9%;
-
+    justify-content: space-around;
 }
 
-.pages {
-    max-width: 60px;
-  }
-
-input[name="title"], input[name="author"], input[name="comments"],  {
+input[name="title"], input[name="author"], input[name="comments"], input[name="pages"] {
     margin: 20px;
+    width: 100%;
+    border: 1px solid #ccc;
+    background: #FFF;
+    margin: 0 0 5px;
+    padding: 10px;
 }
 
-input[name="pages"] {
-    max-width: 60px;
+ {
+   /* max-width: 60px;
   }
 

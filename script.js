@@ -2,7 +2,7 @@
 const bookshelf = document.querySelector(".bookshelf"); //identifies main "bookshelf" div
 const form = document.querySelector("form") //identifies form
 const submit = document.querySelector(`[type="submit"]`); //identifies submit button
-const addButon = document.querySelector(`.add`)
+const addButton = document.querySelector(`.add`)
 const formDiv = document.querySelector(`.add-form`)
 
 //empty array for book objects
@@ -21,7 +21,7 @@ function Book(title, author, pages, read, comments, id) {
 
 //prototype info-fetching function
 Book.prototype.info = function () {
-	return this.title + " by " + this.author + ", " + this.pages + " pages long - " + this.read;
+	return this.title + " by " + this.author + ", " + this.pages + " pages";
 };
 
 //function to add book to library based on user inputs
@@ -145,9 +145,9 @@ bookshelf.onclick = function (e) {
 };
 
 //click listener for add button being pressed
-addButon.onclick = function() {
-	addButon.style.display = "none"; //hide + button
-	formDiv.style.display = "grid";
+addButton.onclick = function() {
+	addButton.style.display = "none"; //hide + button
+	formDiv.style.display = "flex";
 }
 
 //change status of read
@@ -180,10 +180,6 @@ function storageCheck() {
 //save to storage 
 function populateStorage() {
 	localStorage.setItem('library', JSON.stringify(library));
-	//	if (!localStorage.getItem('library')) {
-	//		console.log("hmmm")
-	//	}
-	//	else console.log("success");
 	return;
 }
 
