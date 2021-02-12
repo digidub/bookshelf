@@ -89,8 +89,8 @@ function updateLibrary(i) {
 	div.innerHTML = library[i].info()  //title + " " + library[i].author + " " + library[i].pages + " " + library[i].read; //output object values into HTML of the div
 	let read = library[i].read; //store the value of whether the book is read or not
 	let tickDiv = tickRead(read, bookID); //run the tickbox creation function using the read variable
+	div.appendChild(tickDiv); //add the tick read div as a child of the Book's detail's div
 	div.appendChild(del); //add the delete div as a child of the Book's detail's div.
-	div.appendChild(tickDiv);
 	bookshelf.appendChild(div); //add the Book's Detail's div to the bookshelf div.
 	return;
 }
