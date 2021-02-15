@@ -21,7 +21,13 @@ function Book(title, author, pages, read, comments, id) {
 
 //prototype info-fetching function
 Book.prototype.info = function () {
-	return this.title + " by " + this.author + " <br>(" + this.pages + " pages)";
+	if (this.pages != "") { //check to see whether the book has pages entered
+		if (this.comments != "") {
+			return this.title + `<span class="by"> by </span>` + this.author + "<br>(" + this.pages + " pages) <i>(" + this.comments + ")</i>"; //print details
+		}
+		else return this.title + `<span class="by"> by </span>` + this.author + "<br>(" + this.pages + " pages)"; //print details
+	}
+	else return this.title + `<span class="by"> by </span>` + this.author + "<br>"; //otherwise print details without pages 
 };
 
 //function to add book to library based on user inputs
@@ -88,7 +94,7 @@ function updateLibrary(i) {
 	let bookID = library[i].id //store Object's booktitle
 	let div = bookDiv(bookID); //run bookDiv function and store its output
 	let del = delDiv(bookID); //run delDiv function and store its output
-	div.innerHTML = `<div>${library[i].info()}</div>`  //title + " " + library[i].author + " " + library[i].pages + " " + library[i].read; //output object values into HTML of the div
+	div.innerHTML = `<div>${library[i].info()}</div>`  //print page info to a div
 	let read = library[i].read; //store the value of whether the book is read or not
 	let tickDiv = tickRead(read, bookID); //run the tickbox creation function using the read variable
 	div.appendChild(tickDiv); //add the tick read div as a child of the Book's detail's div
@@ -138,7 +144,7 @@ bookshelf.onclick = function (e) {
 	else if (e.target.className == "delete-div") { //check to see if "X" is being pressed
 		let removeBook = e.target.closest('.book-delete'); //find and assign the parent book DIV it belongs to
 		removeBook.setAttribute('class', 'book-delete-goodbye'); //wizz it off the page
-		setTimeout(function() {
+		setTimeout(function () {
 			removeBook.remove();
 		}, 100); //then remove it from the DOM after 200ms
 		deleteBook(e.target.attributes[1].value); //take the ID value from the X div and parse it to the delete book from array function
