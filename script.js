@@ -136,7 +136,7 @@ bookshelf.onclick = function (e) {
 		populateStorage();
 	}
 	else if (e.target.className == "delete-div") { //check to see if "X" is being pressed
-		let removeBook = e.target.closest('.book'); //find and assign the parent book DIV it belongs to
+		let removeBook = e.target.closest('.book-delete'); //find and assign the parent book DIV it belongs to
 		removeBook.remove(); //then remove it from the DOM
 		deleteBook(e.target.attributes[1].value); //take the ID value from the X div and parse it to the delete book from array function
 		populateStorage();
