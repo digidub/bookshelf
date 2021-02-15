@@ -131,8 +131,9 @@ let deleteButton = document.querySelectorAll(".delete-div");
 
 //event listeners for X and changeRead functions
 bookshelf.onclick = function (e) {
+	console.log(e)
 	if (e.target.className == "read") { //check to see if read has been pressed
-		changeRead(e.target.attributes[1].value); //take the ID value from the tickbox and parse it to the change read status function
+		changeRead(e.target.attributes["data-read"].value); //take the ID value from the tickbox and parse it to the change read status function
 		populateStorage();
 	}
 	else if (e.target.className == "delete-div") { //check to see if "X" is being pressed
@@ -157,6 +158,7 @@ addButton.onclick = function() {
 //change status of read
 function changeRead(e) {
 	let toChangeRead = library.findIndex(({ id }) => id == e) //finds the index of the id clicked on
+	console.log(toChangeRead);
 	if (library[toChangeRead].read == "read") { //if the book object is read
 		library[toChangeRead].read = "unread" //change it to unread
 	}
