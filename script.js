@@ -148,8 +148,8 @@ bookshelf.onclick = function (e) {
 addButton.onclick = function() {
 	addButton.classList.add("add-hidden");
 	addButton.classList.remove("add-shown") //hide + button
-	formDiv.classList.add("add-form-shown");
 	formDiv.classList.remove("add-form-hidden");
+	formDiv.classList.add("add-form-shown");
 }
 
 //change status of read

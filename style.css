@@ -8,7 +8,7 @@
 body {
     background-color: #EEEEEE;
     height: auto;
-    margin: 10px;
+    margin: 100px;
 }
 
 .wrapper {
@@ -17,7 +17,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     background-color: white;
-    height: 95vh;
+    height: 80vh;
     box-shadow: 5px 5px 50px 1px #e0e0e0;
 }
 
@@ -36,37 +36,46 @@ body {
 }
 
 .controls {    
-    background-color: #EEEEEE;
-    padding: 14px;    
+    background-color: #EEEEEE;     
     width: 100%;
     display: flex;
     justify-content: center;
+    margin: 0 0px 0 0px;
+}
+
+.controls:hover {    
+    background: linear-gradient(180deg, rgba(238,238,238,1) 0%, rgba(233,233,233,1) 100%);    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 5px 5px 1px #e2e2e2;
 }
 
 .add-shown {
     visibility: visible;
-    opacity: 100;
-    transition: visibility 0s, opacity 0.5s linear;
     font-size: 49px;
     margin: -55px;
+    transform: translateX(1200%);
+    opacity: 100;
+    color: #555555;
 }
 
 .add-hidden {
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s, opacity 0.5s linear; 
+    transition: opacity ;
 }
 
 .add-form-hidden {
     visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.5s linear;   
+    transform: translateY(-100%);
+    transition: transform ease-out 0.3s;
 }
 
 .add-form-shown {
     visibility: visible;
-    opacity: 100;
-    transition: visibility 0s, opacity 0.5s linear; 
+    transform: translateY(10%);
+    transition: transform ease-out 0.3s;
 }
 
 form {
