@@ -24,7 +24,7 @@ body {
 .book {    
     border-color: #0079D2;
     background-color: #EDF7FF;
-    color: #3a3a3a;
+    color: #0079D2;
     border-style: solid;
     border-width: 1px;
     padding: 14px;
@@ -40,12 +40,35 @@ body {
     padding: 14px;    
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: center;       
 }
 
-.add-form {
-    display: none;
+.add-shown {
     max-width: auto;
+    visibility: visible;
+    opacity: 100;
+    transition: visibility 0s, opacity 0.5s linear; 
+}
+
+.add-hidden {
+    max-width: auto;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear; 
+}
+
+.add-form-hidden {
+    max-width: auto;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;   
+}
+
+.add-form-shown {
+    max-width: auto;
+    visibility: visible;
+    opacity: 100;
+    transition: visibility 0s, opacity 0.5s linear; 
 }
 
 form {
@@ -118,7 +141,6 @@ input:focus {
     color: #52b7ff;
     cursor: default;
 }
-
 
 
 

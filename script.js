@@ -2,8 +2,8 @@
 const bookshelf = document.querySelector(".bookshelf"); //identifies main "bookshelf" div
 const form = document.querySelector("form") //identifies form
 const submit = document.querySelector(`[type="submit"]`); //identifies submit button
-const addButton = document.querySelector(`.add`)
-const formDiv = document.querySelector(`.add-form`)
+const addButton = document.querySelector(`.add-shown`)
+const formDiv = document.querySelector(`.add-form-hidden`)
 
 //empty array for book objects
 const library = [
@@ -146,8 +146,10 @@ bookshelf.onclick = function (e) {
 
 //click listener for add button being pressed
 addButton.onclick = function() {
-	addButton.style.display = "none"; //hide + button
-	formDiv.style.display = "flex";
+	addButton.classList.add("add-hidden");
+	addButton.classList.remove("add-shown") //hide + button
+	formDiv.classList.add("add-form-shown");
+	formDiv.classList.remove("add-form-hidden");
 }
 
 //change status of read
