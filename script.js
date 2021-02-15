@@ -21,7 +21,7 @@ function Book(title, author, pages, read, comments, id) {
 
 //prototype info-fetching function
 Book.prototype.info = function () {
-	return this.title + " by " + this.author + ", " + this.pages + " pages";
+	return this.title + " by " + this.author + " <br>(" + this.pages + " pages)";
 };
 
 //function to add book to library based on user inputs
@@ -47,7 +47,7 @@ function delDiv(bookID) {
 	let delDiv = document.createElement("div"); //create 'delete div' and store it
 	delDiv.setAttribute('class', 'delete-div'); //style div with generic class for css
 	delDiv.setAttribute(`data-id`, `${bookID}`); //set data attribute for access functionality
-	const delText = document.createTextNode("X"); //create text placeholder to act as delete key
+	const delText = document.createTextNode("✖"); //create text placeholder to act as delete key
 	delDiv.appendChild(delText); //insert text placeholder into new div
 	return delDiv; //return the 'delete div' for use out of the function
 }
@@ -65,11 +65,11 @@ function tickRead(read, bookID) {
 	let tickDiv = document.createElement("div"); //create 'tick div' and store it
 	tickDiv.setAttribute('class', 'read-div'); //set class for styling
 	if (read == "read") { //validate whether object is read or not
-		tickDiv.innerHTML = `<input type="checkbox" data-read="${bookID}" class="read" name="read" checked>
+		tickDiv.innerHTML = `<input type="checkbox" data-read="${bookID}" name="read" checked>
 	<label for="read">read?</label>`;//set HTML appropriately
 	}
 	else { //otherwise if book is unread
-		tickDiv.innerHTML = `<input type="checkbox" data-read="${bookID}" class="read" name="read">
+		tickDiv.innerHTML = `<input type="checkbox" data-read="${bookID}" name="read">
 	<label for="read">read?</label>`; //set HTML appropriately
 	}
 	return tickDiv; //return tickDiv to updateLibrary function

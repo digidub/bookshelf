@@ -2,8 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
 :root {
-    font-family: 'PT Sans Caption';
-    
+    font-family: 'PT Sans Caption';    
 }
 
 body {
@@ -45,25 +44,82 @@ body {
 }
 
 .add-form {
-    display: none;    
+    display: none;
+    max-width: auto;
 }
 
 form {
     font-family: 'Roboto';
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    font-size: 13px;
 }
 
 input[name="title"], input[name="author"], input[name="comments"], input[name="pages"] {
     margin: 20px;
-    width: 100%;
+    width: 100px;
     border: 1px solid #ccc;
-    background: #FFF;
-    margin: 0 0 5px;
+    background: #FFFFFF;
+    margin: 0 10px 0px 10px;
     padding: 10px;
 }
 
- {
-   /* max-width: 60px;
-  }
+input[name="title"]:hover, input[name="author"]:hover, input[name="comments"]:hover, input[name="pages"]:hover {
+    box-shadow: 2px 2px 10px 1px #e0e0e0
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    background: #4CAF50;
+    color: #FFFFFF;
+    margin: 0 0 0 5px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+input[type="submit"]:hover {
+    background: #4eb451;
+    box-shadow: 2px 2px 10px 1px #e0e0e0
+}
+
+input[type="checkbox"] {
+    padding: 0px;
+    margin: 0px;
+}
+
+input[type="radio"] {
+    padding: 0px;
+    margin: 2px;
+}
+
+.read-div {
+    display: inline;
+}
+
+input:focus {
+    outline-width: 0;
+}
+
+.bookshelf {
+    padding: 50px;
+
+}
+
+.delete-div {
+    font-size: 20px;
+    color: #0079D2;
+    cursor: default;
+    margin: -13px 0px 0px -1px;
+}
+
+.delete-div:hover {
+    color: #52b7ff;
+    cursor: default;
+}
+
+
+
+
 
