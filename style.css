@@ -36,6 +36,20 @@ body {
     width: 600px;
 }
 
+.book-delete {    
+    border-color: #da202a;
+    background-color: #ffeded;
+    color: #da202a;
+    border-style: solid;
+    border-width: 1px;
+    padding: 14px;
+    border-radius: 15px;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 84% 15% 1%;
+    width: 600px;
+}
+
 .controls {    
     background-color: #f0f0f0;     
     width: 100%;
@@ -163,7 +177,7 @@ input:focus {
 }
 
 .delete-div:hover {
-    color: #52b7ff;
+    color: #da202a;
     cursor: default;
 }
 
