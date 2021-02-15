@@ -1,13 +1,13 @@
 //DOM identifiers
 const bookshelf = document.querySelector(".bookshelf"); //identifies main "bookshelf" div
-const form = document.querySelector("form") //identifies form
+const form = document.querySelector("form"); //identifies form
 const submit = document.querySelector(`[type="submit"]`); //identifies submit button
 const addButton = document.querySelector(`.add-shown`)
-const formDiv = document.querySelector(`.add-form-hidden`)
+const formDiv = document.querySelector(`.add-form-hidden`);
+const formInput = document.querySelector(`[name="title"]`);
 
 //empty array for book objects
-const library = [
-];
+const library = [];
 
 //object constructor for the book object
 function Book(title, author, pages, read, comments, id) {
@@ -65,11 +65,11 @@ function tickRead(read, bookID) {
 	let tickDiv = document.createElement("div"); //create 'tick div' and store it
 	tickDiv.setAttribute('class', 'read-div'); //set class for styling
 	if (read == "read") { //validate whether object is read or not
-		tickDiv.innerHTML = `<input type="checkbox" data-read="${bookID}" name="read" checked>
+		tickDiv.innerHTML = `<input type="checkbox" class="read" data-read="${bookID}" name="read" checked>
 	<label for="read">read?</label>`;//set HTML appropriately
 	}
 	else { //otherwise if book is unread
-		tickDiv.innerHTML = `<input type="checkbox" data-read="${bookID}" name="read">
+		tickDiv.innerHTML = `<input type="checkbox" class="read" data-read="${bookID}" name="read">
 	<label for="read">read?</label>`; //set HTML appropriately
 	}
 	return tickDiv; //return tickDiv to updateLibrary function
@@ -150,6 +150,8 @@ addButton.onclick = function() {
 	addButton.classList.remove("add-shown") //hide + button
 	formDiv.classList.remove("add-form-hidden");
 	formDiv.classList.add("add-form-shown");
+	formInput.focus();
+	formInput.select();
 }
 
 //change status of read
