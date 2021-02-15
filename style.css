@@ -8,7 +8,7 @@
 body {
     background-color: #EEEEEE;
     height: auto;
-    margin: 100px;
+    margin: 10px 30px 10px 30px;
 }
 
 .wrapper {
@@ -36,7 +36,7 @@ body {
 }
 
 .controls {    
-    background-color: #EEEEEE;     
+    background-color: #e0e0e0;     
     width: 100%;
     display: flex;
     justify-content: center;
@@ -48,7 +48,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    box-shadow: 0px 5px 5px 1px #e2e2e2;
+    /*box-shadow: 0px 2px 3px 1px #f0f0f0;*/
 }
 
 .add-shown {
@@ -57,7 +57,7 @@ body {
     margin: -55px;
     transform: translateX(1200%);
     opacity: 100;
-    color: #555555;
+    color: #9c9c9c;
 }
 
 .add-hidden {
@@ -125,7 +125,7 @@ input[type="radio"] {
 }
 
 .read {
-    color: #555555;
+    color: #8a8a8a;
 }
 
 .read-div {
@@ -151,6 +151,10 @@ input:focus {
 .delete-div:hover {
     color: #52b7ff;
     cursor: default;
+}
+
+h1 {
+    margin: 1px;
 }
 
 
