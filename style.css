@@ -40,32 +40,30 @@ body {
     padding: 14px;    
     width: 100%;
     display: flex;
-    justify-content: center;       
+    justify-content: center;
 }
 
 .add-shown {
-    max-width: auto;
     visibility: visible;
     opacity: 100;
-    transition: visibility 0s, opacity 0.5s linear; 
+    transition: visibility 0s, opacity 0.5s linear;
+    font-size: 49px;
+    margin: -55px;
 }
 
 .add-hidden {
-    max-width: auto;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear; 
 }
 
 .add-form-hidden {
-    max-width: auto;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear;   
 }
 
 .add-form-shown {
-    max-width: auto;
     visibility: visible;
     opacity: 100;
     transition: visibility 0s, opacity 0.5s linear; 
@@ -115,6 +113,10 @@ input[type="checkbox"] {
 input[type="radio"] {
     padding: 0px;
     margin: 2px;
+}
+
+.read {
+    color: #555555;
 }
 
 .read-div {
