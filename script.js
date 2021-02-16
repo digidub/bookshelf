@@ -21,13 +21,15 @@ function Book(title, author, pages, read, comments, id) {
 
 //prototype info-fetching function
 Book.prototype.info = function () {
-	if (this.pages != "") { //check to see whether the book has pages entered
-		if (this.comments != "") {
-			return this.title + `<span class="by"> by </span>` + this.author + "<br>(" + this.pages + " pages) <i>(" + this.comments + ")</i>"; //print details
-		}
-		else return this.title + `<span class="by"> by </span>` + this.author + "<br>(" + this.pages + " pages)"; //print details
+	if (this.pages != "") { //if pages are not empty then
+		if (this.comments != "") { //if there are comments then
+			return this.title + `<span class="by"> by </span>` + this.author + "<br>(" + this.pages + " pages) <i>(" + this.comments + ")</i>"; //print all details
+		} else return this.title + `<span class="by"> by </span>` + this.author + "<br>(" + this.pages + " pages)"; //print details with no comments
+	} else { //otherwise, if there are no pages entered then:
+		if (this.comments != "") { //if there are comments then
+			return this.title + `<span class="by"> by </span>` + this.author + "<br><i>(" + this.comments + ")</i>"; //print comments no pages
+		} else return this.title + `<span class="by"> by </span>` + this.author + "<br>"; //print just the details
 	}
-	else return this.title + `<span class="by"> by </span>` + this.author + "<br>"; //otherwise print details without pages 
 };
 
 //function to add book to library based on user inputs
