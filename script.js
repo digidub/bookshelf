@@ -86,7 +86,6 @@ function displayLibrary() {
 	for (let i = 0; i < library.length; i++) { //cycle through object array length
 		updateLibrary(i); //run the update library function for each instance of i
 	};
-	return;
 }
 
 //update library display
@@ -129,7 +128,6 @@ submit.addEventListener('click', (e) => {
 	e.preventDefault(); //prevent the form submit button from refreshing
 	getInput(); //run the getInput()_function
 	form.reset(); //reset the form
-	return;
 });
 
 //DOM identifier for delte divs
@@ -210,7 +208,6 @@ function storageCheck() {
 //save to storage 
 function populateStorage() {
 	localStorage.setItem('library', JSON.stringify(library));
-	return;
 }
 
 //retreive from local storage
